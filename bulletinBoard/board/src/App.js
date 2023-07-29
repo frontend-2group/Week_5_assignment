@@ -1,26 +1,18 @@
 import GlobalStyles from "./styles/globalStyle";
-import {
-  BrowserRouter,
-  createBrowserRouter,
-  Route,
-  RouterProvider,
-  Routes,
-} from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
+import router from "./routes/route";
 import { createContext, useState } from "react";
 
-import LoginPage from "./Login";
-import MainPage from "./MainPage";
-
-// const UserContext = createContext();
+export const UserContext = createContext();
 
 function App() {
-  // const [UserName, setUserName] = useState("");
+  const [userName, setUserName] = useState("");
+
   return (
     <>
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/login" element={<LoginPage />} />
-      </Routes>
+      <UserContext.Provider value={{ userName, setUserName }}>
+        <RouterProvider router={router} />
+      </UserContext.Provider>
     </>
   );
 }

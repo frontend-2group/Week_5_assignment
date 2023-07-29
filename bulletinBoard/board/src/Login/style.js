@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 import { FlexCenter } from "../styles/common";
 
-export const Login = styled.div`
+export const Login = styled.form`
   position: absolute;
   top: 50%;
   left: 50%;

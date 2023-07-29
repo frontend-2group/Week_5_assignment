@@ -3,8 +3,13 @@ import { InputBox, Login } from "./style";
 import { FlexCenter } from "../styles/common";
 import { User } from "../userInformation";
 import React, { useState } from "react";
+import { useContext, useEffect } from "react";
+import { UserContext } from "../App";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function LoginPage() {
+  const { userName, setUserName } = useContext(UserContext);
+
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
 
@@ -15,21 +20,28 @@ function LoginPage() {
     setPassword(e.target.value);
   };
 
-  function login() {
+  const navigate = useNavigate();
+  function login(e) {
+    e.preventDefault();
     const resultIndex = User.findIndex((e) => e.id == id);
 
     if (resultIndex == -1) {
-      return alert("없는 아이디입니다");
+      return alert("아이디 오류");
     } else if (password == User[resultIndex].password) {
-      return (window.location.href = "/");
+      setUserName(User[resultIndex].id);
+      navigate("/");
     } else if (password != User[resultIndex].password) {
-      return alert("잘못된 비밀번호입니다");
+      return alert("비밀번호 오류");
     }
   }
 
+  useEffect(() => {
+    console.log(userName); // 업데이트된 userName 값을 확인
+  }, [userName]);
+
   return (
     <Back>
-      <Login>
+      <Login onSubmit={login}>
         <label>ID</label>
         <InputBox>
           <input
@@ -46,11 +58,12 @@ function LoginPage() {
           />
         </InputBox>
 
-        <button onClick={login}>Login</button>
+        <button type="submit">Login</button>
       </Login>
     </Back>
   );
 }
+
 export default LoginPage;
 
 const Back = styled.body`

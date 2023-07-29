@@ -13,4 +13,8 @@ export const LoginPart = styled.div`
   position: absolute;
   right: 0;
   color: ${COLOR.font};
+
+  & div {
+    ${FlexCenter}
+  }
 `;
