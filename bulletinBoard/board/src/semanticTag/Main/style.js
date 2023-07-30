@@ -10,10 +10,19 @@ export const MainDiv = styled.div`
 
 export const Bulletins = styled.div`
   border: 2px solid ${COLOR.theme[200]};
-  height: 156px;
+  height: 120px;
 
   margin-left: 15vw;
   margin-right: 15vw;
   margin-bottom: 16px;
   padding: 8px;
+`;
+
+export const PageNumber = styled.div`
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left: 15vw;
+  right: 15vw;
+  bottom: 6vw;
 `;

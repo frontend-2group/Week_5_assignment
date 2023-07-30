@@ -2,9 +2,9 @@ import { styled, css } from "styled-components";
 import COLOR from "./themeColor";
 import { FlexCenter } from "./common";
 
-const DGButton = ({ variant, size, shape, children }) => {
+const DGButton = ({ variant, size, shape, children, ...rest }) => {
   return (
-    <Button variant={variant} size={size} shape={shape}>
+    <Button variant={variant} size={size} shape={shape} {...rest}>
       {children}
     </Button>
   );
