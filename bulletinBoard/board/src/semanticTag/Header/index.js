@@ -1,21 +1,23 @@
 import { Link } from "react-router-dom";
 import DGButton from "../../styles/button";
 import { HeaderDiv, LoginPart } from "./style";
-import { useState, useRef } from "react";
+import { useUser } from "../../context/ctx";
 
 function Header(props) {
+  const { userName } = useUser();
+
   return (
     <HeaderDiv>
       <div>
         <h1>Bulletin Board</h1>
       </div>
 
-      {props.userName ? (
+      {userName ? (
         <LoginPart>
-          <div>{props.userName}😃</div>
+          <div>{userName}😃</div>
           <br />
           <DGButton variant={"primary"} size={"large"} shape={"shape"}>
-            게시물
+            내 게시물
           </DGButton>
         </LoginPart>
       ) : (

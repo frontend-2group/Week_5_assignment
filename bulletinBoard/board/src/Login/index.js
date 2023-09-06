@@ -3,12 +3,12 @@ import { InputBox, Login } from "./style";
 import { FlexCenter } from "../styles/common";
 import { User } from "../userInformation";
 import React, { useState } from "react";
-import { useContext, useEffect } from "react";
-import { UserContext } from "../App";
 import { Navigate, useNavigate } from "react-router-dom";
+import { useUser } from "../context/ctx";
 
 function LoginPage() {
-  const { userName, setUserName } = useContext(UserContext);
+  const { userName, setUserName } = useUser();
+  // console.log(userName);
 
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
@@ -25,7 +25,9 @@ function LoginPage() {
     e.preventDefault();
     const resultIndex = User.findIndex((e) => e.id == id);
 
-    if (resultIndex == -1) {
+    if (id == false && password == false) {
+      return alert("내용을 입력해주세요");
+    } else if (resultIndex == -1) {
       return alert("아이디 오류");
     } else if (password == User[resultIndex].password) {
       setUserName(User[resultIndex].id);
@@ -34,10 +36,6 @@ function LoginPage() {
       return alert("비밀번호 오류");
     }
   }
-
-  useEffect(() => {
-    console.log(userName); // 업데이트된 userName 값을 확인
-  }, [userName]);
 
   return (
     <Back>

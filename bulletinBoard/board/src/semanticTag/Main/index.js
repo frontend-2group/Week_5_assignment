@@ -13,6 +13,7 @@ function Main() {
 
   return (
     <MainDiv>
+      <br />
       {User[user] && (
         <Bulletins>
           <div>{User[user]?.id}</div>
